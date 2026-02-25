@@ -5,7 +5,8 @@ import {NextFunction, Request, Response} from "express";
 
 export class ProductMiddleware implements NestMiddleware{
     use(req: Request, res: Response, next: NextFunction) {
-        console.log(`${new Date()} with middleware`);
+        console.log("adsfsrggbe")
+        req["theTime"] = new Date()
         next();
     }
 }

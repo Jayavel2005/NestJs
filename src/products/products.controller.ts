@@ -1,4 +1,4 @@
-import {Body, Controller, Get, HttpCode, HttpStatus, Param, Post, UsePipes, ValidationPipe} from '@nestjs/common';
+import {Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Req, UsePipes, ValidationPipe} from '@nestjs/common';
 import {ProductsService} from "./products.service";
 import {Product} from "./types/Product";
 import {CreateProductDto} from "./dto/create-product.dto";
@@ -33,8 +33,10 @@ export class ProductsController {
 
     @Post("middleware")
     testMiddleware(
+        @Req() req : Request,
         @Body("title") title: string
     ){
+        console.log(` sdfbosf ${req["theTime"]}`)
         return title;
     }
 }
