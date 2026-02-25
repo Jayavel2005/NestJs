@@ -1,18 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import {Product} from "./types/Product";
+import {CreateProductDto} from "./dto/create-product.dto";
 
 
 @Injectable()
 export class ProductsService {
     private products: Product[] = [];
 
-    insertProduct (title: string, description: string, price: number){
+    insertProduct (body: CreateProductDto){
         const id: string = new Date().toISOString();
         const product: Product = {
             id,
-            title,
-            description,
-            price
+            ...body
         }
 
         this.products.push(product)
