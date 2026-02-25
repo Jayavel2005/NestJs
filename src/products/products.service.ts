@@ -1,11 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import {Product} from "./types/Product";
 
-type Product = {
-    id: string,
-    title: string,
-    description: string,
-    price: number
-}
 
 @Injectable()
 export class ProductsService {
@@ -21,9 +16,17 @@ export class ProductsService {
         }
 
         this.products.push(product)
+        return id
     }
 
     getAllProducts(): Product[]{
         return this.products;
+    }
+
+    getProductById(id: string): Product | string{
+        const product: Product | undefined = this.products.find((product: Product):boolean => product.id === id);
+
+        if (product) return product
+        else return "Product Not found";
     }
 }
